@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+  }
+  
+  .dashboard-container {
+    display: flex;
+  }
+  
+  .widget-area {
+    flex: 1;
+  }
+  
+  .customization-panel {
+    padding: 1rem;
+    border: 1px solid #ccc;
+  }
