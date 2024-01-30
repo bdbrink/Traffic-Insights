@@ -1,3 +1,5 @@
+const { GoogleAuth } = require('google-auth-library');
+
 // Initial placeholder data
 const websiteData = {
   pageviews: 1000,
