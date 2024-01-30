@@ -3,19 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website Traffic Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Your Dashboard</title>
 </head>
 <body>
-  <h1>Website Traffic Dashboard</h1>
+  <div class="widget-area"></div>
+  <script>
+    async function renderDashboard() {
+      const widgetArea = document.querySelector(".widget-area");
 
-  <div class="dashboard-container">
-    <div class="widget-area"></div>
-    <div class="customization-panel">
-      <h3>Customize</h3>
-      </div>
-  </div>
+      try {
+        const { fetchGoogleAnalyticsData } = require('./server'); // Adjust the path accordingly
 
-  <script src="script.js"></script>
+        const analyticsData = await fetchGoogleAnalyticsData();
+
+        // Add widgets for Google Analytics data
+        widgetArea.appendChild(createWidget("GA Pageviews", analyticsData.pageviews));
+        widgetArea.appendChild(createWidget("GA Unique Visitors", analyticsData.uniqueVisitors));
+        widgetArea.appendChild(createWidget("GA Sessions", analyticsData.sessions));
+        widgetArea.appendChild(createWidget("GA Bounce Rate", analyticsData.bounceRate));
+      } catch (error) {
+        console.error("Error rendering Google Analytics data:", error);
+      }
+    }
+
+    function createWidget(title, data) {
+      const widget = document.createElement("div");
+      widget.classList.add("widget");
+      widget.innerHTML = `<h2>${title}</h2><p>${data}</p>`;
+      return widget;
+    }
+
+    renderDashboard();
+  </script>
 </body>
 </html>
