@@ -4,36 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Dashboard</title>
-</head>
+  <link rel="stylesheet" href="style.css"> </head>
 <body>
-  <div class="widget-area"></div>
-  <script>
-    async function renderDashboard() {
-      const widgetArea = document.querySelector(".widget-area");
-
-      try {
-        const { fetchGoogleAnalyticsData } = require('./server'); // Adjust the path accordingly
-
-        const analyticsData = await fetchGoogleAnalyticsData();
-
-        // Add widgets for Google Analytics data
-        widgetArea.appendChild(createWidget("GA Pageviews", analyticsData.pageviews));
-        widgetArea.appendChild(createWidget("GA Unique Visitors", analyticsData.uniqueVisitors));
-        widgetArea.appendChild(createWidget("GA Sessions", analyticsData.sessions));
-        widgetArea.appendChild(createWidget("GA Bounce Rate", analyticsData.bounceRate));
-      } catch (error) {
-        console.error("Error rendering Google Analytics data:", error);
-      }
-    }
-
-    function createWidget(title, data) {
-      const widget = document.createElement("div");
-      widget.classList.add("widget");
-      widget.innerHTML = `<h2>${title}</h2><p>${data}</p>`;
-      return widget;
-    }
-
-    renderDashboard();
-  </script>
-</body>
+  <div class="dashboard-container">
+    <div class="widget-area"></div>
+    <div class="customization-panel">
+      </div>
+  </div>
+  <script src="script.js"></script> </body>
 </html>
