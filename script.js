@@ -1,3 +1,7 @@
+const express = require('express');
+const { GoogleAuth } = require('google-auth-library');
+const open = require('open');
+
 async function fetchGoogleAnalyticsData() {
     try {
       const response = await fetch('/analytics-data'); // Fetch data from server-side endpoint
