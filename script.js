@@ -39,9 +39,9 @@ async function renderDashboard() {
   }
 }
 
-// Automatic browser opening (optional)
-const open = require("open"); // Install using npm install open
+async function openBrowser() {
+    const open = await import('open'); // Dynamic import within a function
+    open('http://localhost:3999/', { app: ['chrome'] });
+  }
 
-renderDashboard().then(() => {
-  open("http://localhost:3999/", { app: ["chrome"] }); // Adjust browser preference if needed
-});
+renderDashboard().then(openBrowser);
