@@ -1,10 +1,6 @@
-const express = require('express');
-const { GoogleAuth } = require('google-auth-library');
-const open = require('open');
-
 async function fetchGoogleAnalyticsData() {
     try {
-      const response = await fetch('/analytics-data'); // Fetch data from server-side endpoint
+      const response = await fetch('/analytics-data');
       const analyticsData = await response.json();
       return analyticsData;
     } catch (error) {
@@ -37,4 +33,10 @@ async function fetchGoogleAnalyticsData() {
     }
   }
   
-  renderDashboard();
+  // Automatic browser opening (optional)
+  const open = require('open'); // Install using npm install open
+  
+  renderDashboard().then(() => {
+    open('http://localhost:3999/', { app: ['chrome'] }); // Adjust browser preference if needed
+  });
+  
